@@ -81,10 +81,47 @@ public class test {
         return i + 1;
     }
 
+
+    public static int search(int arr[], int tar, int si, int ei){
+        if (si > ei) {
+            return -1;  // Base case: element not found
+        }
+        // kaam
+        int mid = si + (ei - si) / 2;
+
+        // case 1
+        if (arr[mid] == tar) {
+            return mid;
+            
+        }
+        // case 2
+        if (arr[si] <= arr[mid]) {
+            // Left half is sorted
+            if (tar >= arr[si] && tar < arr[mid]) {
+                return search(arr, tar, si, mid - 1);
+            } else {
+                return search(arr, tar, mid + 1, ei);
+            }
+        } else {
+            // Right half is sorted
+            if (tar > arr[mid] && tar <= arr[ei]) {
+                return search(arr, tar, mid + 1, ei);
+            } else {
+                return search(arr, tar, si, mid - 1);
+            }
+        }
+    }
+
+    
+
+
     public static void main(String[] args) {
-        int arr[] = {6,3,9,5,2,8,-5};
+        int arr[] = {4,5,6,7,0,1,2};
+        int target = 6;
+        int targInd = search(arr, target, 0, arr.length - 1);
+        System.out.println(targInd);
         // mergeSort(arr, 0, arr.length - 1);
-        quickSort(arr, 0, arr.length - 1);
-        printArr(arr);
+        // quickSort(arr, 0, arr.length - 1);
+        // printArr(arr);
     }
 }
