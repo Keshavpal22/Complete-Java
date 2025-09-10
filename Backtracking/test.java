@@ -20,10 +20,26 @@ public class test {
         System.out.println();
     }
 
+    public static void findPermutations(String str,String ans){
+        //base case
+        if(str.length() == 0){
+            System.out.println(ans);
+            return ;
+        }
+        // recursion
+        for(int i=0;i<str.length();i++){
+            char curr = str.charAt(i);
+            String newStr = str.substring(0,i) + str.substring(i+1);
+            findPermutations(newStr, ans + curr);
+        }
+    }
+
     public static void main(String[] args) {
-        int arr[] = {1,2,3,4,5};
+        // int arr[] = {1,2,3,4,5};
         // arr = new int[]{ 1, 2, 3, 4, 5 }; // [1,2,3,4,5]
-        changeArr(arr, 0, 1);
-        printArr(arr);
+        // changeArr(arr, 0, 1);
+        // printArr(arr);
+        String str = "abcd";
+        findPermutations(str, "");
     }
 }
